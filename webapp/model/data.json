@@ -1,0 +1,65 @@
+{
+  "kpi": {
+    "headCount": 4496,
+    "takeHomePay": 5149,
+    "employeeCost": 47000,
+    "benefitInKind": 70,
+    "totalCost":100
+  },
+  "hc": [
+    { "month": "January", "value": 1166 },
+    { "month": "February", "value": 674 },
+    { "month": "March", "value": 838 },
+    { "month": "April", "value": 737 },
+    { "month": "May", "value": 532 },
+    { "month": "June", "value": 27 },
+    { "month": "July", "value": 1003 },
+    { "month": "August", "value": 909 },
+    { "month": "September", "value": 786 },
+    { "month": "October", "value": 102 },
+    { "month": "November", "value": 1345 },
+    { "month": "Desember", "value": 230 }
+  ],
+  "employeeCost": [
+    { "month": "January", "amount": 1166 },
+    { "month": "February", "amount": 674 },
+    { "month": "March", "amount": 838 },
+    { "month": "April", "amount": 737 },
+    { "month": "May", "amount": 532 },
+    { "month": "June", "amount": 27 },
+    { "month": "July", "amount": 1003 },
+    { "month": "August", "amount": 909 },
+    { "month": "September", "amount": 786 },
+    { "month": "October", "amount": 102 },
+    { "month": "November", "amount": 1345 },
+    { "month": "Desember", "amount": 230 }
+  ],
+  "benefitKind": [
+    { "month": "January", "amount": 1166 },
+    { "month": "February", "amount": 674 },
+    { "month": "March", "amount": 838 },
+    { "month": "April", "amount": 737 },
+    { "month": "May", "amount": 532 },
+    { "month": "June", "amount": 27 },
+    { "month": "July", "amount": 1003 },
+    { "month": "August", "amount": 909 },
+    { "month": "September", "amount": 786 },
+    { "month": "October", "amount": 102 },
+    { "month": "November", "amount": 1345 },
+    { "month": "Desember", "value": 230 }
+  ],
+  "totalCost": [
+    { "month": "January", "amount": 1166 },
+    { "month": "February", "amount": 674 },
+    { "month": "March", "amount": 838 },
+    { "month": "April", "amount": 737 },
+    { "month": "May", "amount": 532 },
+    { "month": "June", "amount": 27 },
+    { "month": "July", "amount": 1003 },
+    { "month": "August", "amount": 909 },
+    { "month": "September", "amount": 786 },
+    { "month": "October", "amount": 102 },
+    { "month": "November", "amount": 1345 },
+    { "month": "Desember", "amount": 230 }
+  ]
+}

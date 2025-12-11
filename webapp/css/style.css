@@ -1,0 +1,757 @@
+/* =========================================================
+   GLOBAL BACKGROUND & PAGE
+========================================================= */
+html, body, .sapUiBody {
+  background: #12171b !important;
+  color: #d7e6ea !important;
+}
+
+.darkPage {
+  background: linear-gradient(90deg, #20262d 0%, #242c36 100%);
+  padding: 0 !important;
+  color: #fcfdfd;
+}
+
+/* Remove SAPUI5 page padding */
+.sapMPage section,
+.sapMPageEnableScrolling,
+.sapMPageScroll,
+.sapMPageHeader {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+/* =========================================================
+   FILTER BAR
+========================================================= */
+.filterBar {
+  width: 94% !important;
+  margin: 8px auto !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
+.kpiContainer {
+  width: 100% !important;
+  margin: 12px auto !important;
+  display: flex !important;
+  justify-content: space-evenly !important;   /* <--- EXACT FIX */
+  align-items: center;
+}
+
+/* KPI Card — new horizontal top row layout */
+.kpiCard {
+    background: #cfd8dc;
+    padding: 14px 18px !important;
+    height: 90px !important;
+    width: 200px !important;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* NEW: Horizontal row for icon + value */
+.kpiTopRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Icon styling */
+.kpiIcon {
+    font-size: 30px !important;
+    color: #00796b !important;
+}
+
+/* KPI Text — RESTORED */
+.kpiCard .sapMText,
+.kpiCard .kpiValue {
+  color: #1a252c !important;       /* dark text */
+  fill: #1a252c !important;
+}
+
+/* .kpiValue {
+  font-size: 20px !important;
+  margin-top: 4px !important;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+} */
+
+/* KPI Value — LARGE + BOLD */
+.kpiValue {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 1 !important; /* ensures always visible */
+}
+
+/* KPI Title placed below */
+.kpiTitle {
+    font-size: 13px !important;
+    color: #1b2429 !important;
+    margin-top: 4px !important;
+}
+
+/* KPI Hover Glow */
+.kpiCard:hover {
+  box-shadow: 0 0 14px rgba(127,230,212,0.4);
+  transform: translateY(-3px);
+  transition: 0.25s ease;
+}
+
+/* KPI Animations */
+@keyframes kpiEnter {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes iconPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.12); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* Chart panel background override */
+.vizPanel {
+  width: 100% !important;      /* was 94% */
+  margin: 8px 0 !important;
+  padding: 10px 12px !important;   /* slightly smaller padding */
+  border-radius: 12px;
+  background: #cfd8dc;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.30);
+}
+
+.vizFrameFull {
+  width: 100% !important;
+  height: 260px  !important;
+}
+
+
+/* =========================================================
+   CHART FADE ANIMATION
+========================================================= */
+.chartFade { opacity: 0; transition: opacity 0.35s ease; }
+.chartVisible { opacity: 1; transition: opacity 0.35s ease; }
+
+
+/* =========================================================
+   CHART AXIS TEXT — BRIGHT DEFAULT, DARK ON HOVER
+========================================================= */
+/* Default bright axis text */
+svg .viz-axis text,
+svg .viz-category-axis text,
+svg .viz-value-axis text {
+    fill: #eafcff !important; 
+    font-weight: 600 !important;
+    transition: 0.2s ease;
+}
+
+/* Hover -> darker */
+svg .viz-axis text:hover,
+svg .viz-category-axis text:hover,
+svg .viz-value-axis text:hover {
+    fill: #7c8b96 !important;
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   BAR HOVER GLOW
+========================================================= */
+svg .viz-column rect,
+svg .viz-bar rect {
+  transition: 0.25s ease !important;
+}
+
+svg .viz-column rect:hover,
+svg .viz-bar rect:hover {
+  stroke: #7fe6d4 !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0px 0px 6px rgba(127,230,212,0.55)) !important;
+  transform: scale(1.03);
+  transform-origin: center;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   DARK TOOLTIP THEME
+========================================================= */
+.viz-controls-tooltip,
+.viz-tooltip {
+    background-color: #1f2a30 !important;
+    color: #eafcff !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 8px !important;
+    padding: 10px 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.55) !important;
+}
+
+.viz-controls-tooltip-title { 
+    color: #a8f8ff !important;
+    font-weight: 600 !important;
+}
+
+.viz-tooltip-item td,
+.viz-tooltip-item span {
+    color: #eafcff !important;
+}
+
+
+/* ============================================================
+   FINAL FIX — FORCE BRIGHT AXIS TEXT EVEN IF VIZFRAME OVERRIDES
+   ============================================================ */
+
+/* Target ANY inline <text fill="..."> inside axis groups */
+#chartActive svg g[text-anchor] text,
+#chartDept svg g[text-anchor] text,
+#chartLeave svg g[text-anchor] text,
+#chartGender svg g[text-anchor] text {
+    fill: #eafcff !important;     /* <--- ultra bright */
+    opacity: 1 !important;
+    font-weight: 600 !important;
+}
+
+/* ============================================================
+   FINAL SAFE RULE — BRIGHT DEFAULT AXIS TEXT
+   (Hover will override because this is NOT using !important)
+=========================================================== */
+
+svg .viz-axis text,
+svg .viz-category-axis text,
+svg .viz-value-axis text {
+    fill: #eafcff;      /* bright mint */
+    font-weight: 600;
+}
+
+/* Hover — now works because NOT blocked */
+svg .viz-axis text:hover,
+svg .viz-category-axis text:hover,
+svg .viz-value-axis text:hover {
+    fill: #7c8b96 !important;   /* dark gray */
+    font-weight: 700 !important;
+}
+
+/* safe fallback only; JS enforces exact colors */
+svg .viz-axis text,
+svg .viz-category-axis text,
+svg .viz-value-axis text {
+  transition: fill 0.15s ease;
+  cursor: default;
+}
+
+.themeToggleBtn {
+    color: #ffd369 !important;
+    font-size: 22px !important;
+    cursor: pointer;
+    padding: 8px;
+    transition: 0.25s ease;
+}
+
+.themeToggleBtn:hover {
+    transform: scale(1.15);
+}
+
+/* LIGHT THEME PAGE */
+.lightPage {
+    background: #f5f7fa !important;
+    color: #1b2429 !important;
+    transition: 0.35s ease-in-out;
+}
+
+/* DARK THEME PAGE */
+.darkPage {
+    transition: 0.35s ease-in-out;
+}
+
+/* KPI LIGHT MODE */
+.lightPage .kpiCard {
+    background: #cfd8dc !important; /* Light grey */
+    color: #1b2429 !important;
+}
+
+.lightPage .kpiCard .sapMText,
+.lightPage .kpiCard .kpiValue {
+    color: #1b2429 !important;
+}
+
+/* CHART PANEL LIGHT MODE */
+.lightPage .vizPanel {
+    background: #cfd8dc !important;
+    border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* AXIS LIGHT TEXT */
+.lightPage svg .viz-axis text,
+.lightPage svg .viz-category-axis text,
+.lightPage svg .viz-value-axis text {
+    fill: #1b2429 !important;
+}
+
+/* AXIS HOVER IN LIGHT MODE */
+.lightPage svg .viz-axis text:hover,
+.lightPage svg .viz-category-axis text:hover,
+.lightPage svg .viz-value-axis text:hover {
+    fill: #455a64 !important;
+}
+
+/* Page Title – Left aligned + Bold */
+.sapMTitle.sapMTitleStyleAuto {
+    text-align: left !important;
+    font-weight: 700 !important;
+    width: 100% !important;
+    padding-left: 20px !important; /* optional: indent */
+}
+
+/* Force Page title to align left */
+.sapMPageHeader .sapMTB {
+    justify-content: flex-start !important;   /* move content to the left */
+}
+
+/* Page title text style */
+.sapMPageHeader .sapMTitle {
+    text-align: left !important;
+    font-weight: 700 !important;
+    margin-left: 16px !important; /* spacing from edge */
+}
+
+/* force page header toolbar left alignment */
+#_IDGenPage1-header .sapMTB {
+    justify-content: flex-start !important;
+}
+
+/* style the title text */
+#_IDGenPage1-header .sapMTitle {
+    text-align: left !important;
+    font-weight: 700 !important;
+    margin-left: 16px !important;
+}
+
+.filterLabel {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-left: 20px;
+    color: #eafcff;
+}
+
+.lightPage .filterLabel {
+    color: #1b2429 !important;
+}
+
+.filterWrapper {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.filterBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filterBar > .sapUiHLayout,
+.filterBar > .sapMFlexBox {
+    margin-right: 25px;   /* space between groups */
+}
+
+.filterLabel {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 6px;
+    color: #eafcff;
+}
+
+.lightPage .filterLabel {
+    color: #1b2429 !important;
+}
+
+#_IDGenGrid {
+    width: 92% !important;           /* match KPI container width */
+    margin: 0 auto !important;       /* center grid exactly like KPI row */
+}
+
+/* Align chart grid perfectly with KPI container */
+#_IDGenGrid.sapUiRespGrid {
+    width: 92% !important;         /* EXACT match with KPI container */
+    margin: 0 auto !important;     /* center horizontally */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Remove padding between columns so charts align perfectly */
+#_IDGenGrid > .sapUiRespGridSpanL6 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Remove UI5 grid internal horizontal gap */
+.sapUiRespGrid.sapUiRespGridHSpace1,
+.sapUiRespGrid.sapUiRespGridHSpace0,
+.sapUiRespGrid {
+    gap: 0 !important;
+}
+
+/* Remove ALL padding/margins UI5 injects inside the Grid */
+#_IDGenGrid,
+#_IDGenGrid > div,
+#_IDGenGrid .sapUiRespGridSpanL6,
+#_IDGenGrid .sapUiRespGridSpanM12,
+#_IDGenGrid .sapUiRespGridSpanS12 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Force Grid outer wrapper to match KPI width EXACTLY */
+#_IDGenGrid {
+    width: 92% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Remove UI5 default hSpacing */
+.sapUiRespGridHSpace1 #_IDGenGrid,
+.sapUiRespGridHSpace0 #_IDGenGrid {
+    gap: 0 !important;
+}
+
+/* ============================================================
+   PERFECT ALIGNMENT BETWEEN KPI ROW AND CHART GRID
+   ============================================================ */
+
+/* KPI row = full width ruler */
+.kpiRow {
+  width: 92% !important;       /* same width as chart grid */
+  margin: 0 auto !important;   /* center exactly */
+  padding: 0 !important;
+}
+
+/* Chart grid MUST match KPI row exactly */
+#_IDGenGrid {
+  width: 92% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Remove all internal padding added by UI5 Grid columns */
+#_IDGenGrid > .sapUiRespGridSpanL6,
+#_IDGenGrid > .sapUiRespGridSpanM12,
+#_IDGenGrid > .sapUiRespGridSpanS12 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Panels inside grid must fill their cell exactly */
+#_IDGenGrid .vizPanel {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Master wrapper: everything aligns inside this box */
+.mainWrapper {
+    width: 92% !important;     /* Same width as KPI row & chart grid */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+}
+
+/* Remove SAPUI5 Page automatic padding */
+.sapMPage section,
+.sapMPage .sapMPageScroll {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Ensure KPI container does not override centering */
+.kpiContainer {
+    width: 100% !important;        /* Now inherits 92% from wrapper */
+    margin: 0 !important;
+}
+
+/* Ensure chart grid inherits wrapper width exactly */
+#_IDGenGrid {
+    width: 100% !important;        /* Inherits 92% from wrapper */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remove UI5 internal Grid spacing completely */
+.sapUiRespGrid {
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+}
+
+.sapUiRespGridSpanL6,
+.sapUiRespGridSpanM12,
+.sapUiRespGridSpanS12 {
+    padding: 0 !important;
+}
+
+/* Add vertical space below KPI row */
+.kpiWrapper {
+    margin-bottom: 10px !important;   /* Increase space between KPI and charts */
+}
+
+/* Optional: also add a bit more space above each chart panel */
+.vizPanel {
+    margin-top: 16px !important;
+}
+
+.chartTitle {
+    color: #1c1d1d;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 12px;   /* ⬅ Add space above the title */
+    margin-bottom: 8px; /* spacing between title & chart */
+    padding-left: 4px;  /* optional: slight left indent */
+}
+
+.dashboardFilterBar {
+    width: 92% !important;
+    margin: 12px auto !important;
+    padding: 10px 16px !important;
+    background: #1f272f;
+    border-radius: 10px;
+}
+
+.lightPage .dashboardFilterBar {
+    background: #e3e9ed !important;
+}
+
+/* .dashboardFilterBar .sapMLabel {
+    color: #eafcff !important;
+    font-weight: 600;
+} */
+
+.lightPage .dashboardFilterBar .sapMLabel {
+    color: #1b2429 !important;
+}
+
+/* ============================================================
+   LIGHT GREY FILTER BAR (MATCH KPI BACKGROUND: #cfd8dc)
+   ============================================================ */
+
+/* Main SmartFilterBar container */
+.sapUiCompFilterBar {
+    background-color: #cfd8dc !important;         /* <-- KPI color */
+    border-radius: 12px !important;               /* rounded corners */
+    padding: 16px 22px !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.20) !important; /* soft shadow same as KPI */
+}
+
+/* Internal content wrapper */
+.sapUiCompFilterBarContent,
+.sapUiCompFilterBarBasicArea {
+    background-color: #cfd8dc !important;         /* match KPI */
+    border-radius: 12px !important;
+}
+
+/* Filter Labels */
+.sapUiCompFilterLabel,
+.sapMLabel {
+    color: #1b2429 !important;                     /* KPI title text color */
+    font-weight: 600 !important;
+}
+
+/* INPUT FIELDS (MultiInput, Select, DatePickers) */
+.sapMInputBaseInner,
+.sapMSlt {
+    background-color: #ffffff !important;
+    color: #1b2429 !important;
+    border: 1px solid #a5b2b8 !important;          /* subtle border */
+    border-radius: 8px !important;
+}
+
+/* Value Help Icon */
+.sapMInputValHelpInner {
+    color: #00796b !important;                     /* same as KPI icon color */
+    font-weight: bold;
+}
+
+/* Focus Effect */
+.sapMFocus .sapMInputBaseInner,
+.sapMFocus .sapMSlt {
+    border-color: #00796b !important;              /* same green tint as KPI icons */
+    box-shadow: 0 0 4px rgba(0,121,107,0.4) !important;
+}
+
+/* Go / Search Button styling (optional but recommended) */
+.sapUiCompFilterBar .sapMBarChild .sapMBtn {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+/* Force filter labels to be fully visible and black */
+.filterWrapper .sapMLabel,
+.filterWrapper .sapMText {
+    color: #000 !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+}
+
+/* Force SmartFilterBar labels to be black */
+.sapUiCompFilterLabel,
+.sapUiCompFilterBar .sapMLabel,
+.sapUiCompFilterBarLbl,
+.sapUiCompFilterBar .sapUiCompFilterLabel {
+    color: #000 !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+}
+
+/* Ensure MultiInput outer container is rounded */
+.sapMMultiInput {
+    border-radius: 10px !important;
+}
+
+/* Ensure actual input field is rounded */
+.sapMMultiInput .sapMInputBaseInner {
+    border-radius: 10px !important;
+}
+
+/* Fix right side (value help icon area) — also rounded */
+.sapMMultiInput .sapMInputValHelp {
+    border-radius: 10px !important;
+}
+
+/* Remove UI5 “flat cut” when focused */
+.sapMMultiInput.sapMFocus,
+.sapMMultiInput.sapMFocus .sapMInputBaseInner {
+    border-radius: 10px !important;
+}
+
+/* SmartFilterBar outer item wrapper */
+.sapUiCompFilterBarItem {
+    border-radius: 10px !important;
+    overflow: hidden !important;   /* <-- CRITICAL fix */
+}
+
+/* The layout wrapper for each control */
+.sapUiCompFilterBarItem .sapUiHLayout,
+.sapUiCompFilterBarItem .sapMFlexBox {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+}
+
+/* MultiInput outer shell */
+.sapMMultiInput {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+}
+
+/* Real input field */
+.sapMMultiInput .sapMInputBaseInner {
+    border-radius: 10px !important;
+}
+
+/* Value help button */
+.sapMMultiInput .sapMInputValHelp {
+    border-radius: 10px !important;
+}
+
+/* Remove inner split and border between input & value help button */
+.sapMMultiInput .sapMInputBaseInner,
+.sapMMultiInput .sapMInputValHelp {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove MultiInput internal padding that causes curved split look */
+.sapMMultiInput .sapMInputBaseInner {
+    border-radius: 0 !important;          /* removes rounded inner ends */
+}
+
+/* Make outer MultiInput the ONLY rounded shape */
+.sapMMultiInput {
+    border-radius: 8px !important;
+    border: 1px solid #a5b2b8 !important;
+    overflow: hidden !important;          /* forces input + icon to merge smoothly */
+    background: #fff !important;
+}
+
+/* Ensure value help icon merges seamlessly */
+.sapMMultiInput .sapMInputValHelp {
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+    border-left: 1px solid #a5b2b8 !important; /* subtle divider like Select arrow */
+}
+
+/* Fix focus look */
+.sapMMultiInput.sapMFocus {
+    border-color: #00796b !important;
+    box-shadow: 0 0 4px rgba(0,121,107,0.4) !important;
+}
+
+/* Add vertical space under Filter Bar */
+.sapUiCompFilterBar {
+    margin-bottom: 28px !important;   /* adjust value as needed */
+}
+
+/* Remove all default margins */
+#_IDGenGrid > div {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Add small spacing ONLY before chart row 2 */
+#_IDGenGrid > div:nth-child(3),
+#_IDGenGrid > div:nth-child(4) {
+    margin-top: 2px !important;   /* 🔧 adjust here */
+}
+
+/* Initial fade-out before updating */
+.chartFadeOut {
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Fade-in after update */
+.chartFadeIn {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Ensure the charts start visible */
+.chartVisible {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+/* Make Month & Year Select text visible */
+#monthFilter .sapMSltLabel,
+#yearFilter .sapMSltLabel {
+    color: #1b2429 !important;     /* dark visible text */
+    font-weight: 600;
+}
+
+/* Dropdown arrow color */
+#monthFilter .sapMSltArrow,
+#yearFilter .sapMSltArrow {
+    color: #1b2429 !important;
+}
+
+.sapMSltLabel {
+    color: white;
+}

@@ -1,0 +1,240 @@
+<mvc:View controllerName="hr.executive.dashboard.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:vizData="sap.viz.ui5.data"
+	xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:fb="sap.ui.comp.filterbar"
+    >
+	<App id="app">
+		<pages>
+			<Page id="_IDGenPage1" title="HR Executive Dashboard" class="darkPage" enableScrolling="true">
+				<headerContent>
+					<core:Icon id="themeToggle"
+                        src="sap-icon://lightbulb"
+                        press=".onToggleTheme"
+                        class="themeToggleBtn"/>
+				</headerContent>
+				<content>
+					<VBox id="mainWrapper" class="mainWrapper">
+						<!-- ==========================
+                             FILTER BAR
+                        =========================== -->
+						<!-- <VBox id="_IDGenVBox1" width="100%" class="filterWrapper"><HBox id="_IDGenHBox" class="filterBar" justifyContent="SpaceBetween" alignItems="Center" width="94%"><Text id="_IDGenText" text="Filter by Pillar:" class="filterLabel"/><Select id="officeFilter" change=".onOfficeFilter"><items><core:Item id="_IDGenItem" key="ALL" text="All"/><core:Item id="_IDGenItem1" key="Berlin" text="Berlin"/><core:Item id="_IDGenItem2" key="Hamburg" text="Hamburg"/><core:Item id="_IDGenItem3" key="Munich" text="Munich"/><core:Item id="_IDGenItem4" key="Frankfurt" text="Frankfurt"/><core:Item id="_IDGenItem5" key="Stuttgart" text="Stuttgart"/><core:Item id="_IDGenItem6" key="Dresden" text="Dresden"/></items></Select><Text id="_IDGenText1" text="Filter by Company Code:" class="filterLabel"/><Select id="companyCodeFilter" width="150px"/><Text id="_IDGenText2" text="Filter by Month:" class="filterLabel"/><Select id="monthFilter" width="150px"/><Text id="_IDGenText3" text="Filter by Year:" class="filterLabel"/><Select id="yearFilter" width="150px"/></HBox></VBox> -->
+						<fb:FilterBar
+                            id="fbMain"
+                            class="dashboardFilterBar"
+                            showFilterConfiguration="false"
+                            useToolbar="true"
+                            search=".onFilterSearch">
+							<fb:filterItems>
+								<!-- Pillar -->
+								<fb:FilterItem id="_IDGenFilterItem1" name="Pillar" label="Filter by Pillar:" >
+									<fb:control>
+										<MultiInput
+                                        id="pillarFilter"
+                                        width="220px"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onPillarValueHelp"></MultiInput>
+									</fb:control>
+								</fb:FilterItem>
+								<!-- Company Code -->
+								<fb:FilterItem id="_IDGenFilterItem2" name="CompanyCode" label="Filter by Company Code:">
+									<fb:control>
+										<MultiInput
+                                        id="companyCodeFilter"
+                                        width="200px"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onCompanyValueHelp"></MultiInput>
+									</fb:control>
+								</fb:FilterItem>
+								<!-- Month -->
+								<!-- Month (Single Select) -->
+								<fb:FilterItem id="_IDGenFilterItem3" name="Month" label="Filter by Month:">
+									<fb:control>
+        <Input
+            id="monthFilter"
+            width="180px"
+            showValueHelp="true"
+            valueHelpRequest=".onMonthValueHelp"
+            />
+									</fb:control>
+								</fb:FilterItem>
+								<!-- Year (Single Select) -->
+								<fb:FilterItem id="_IDGenFilterItem4" name="Year" label="Filter by Year:">
+									<fb:control>
+        <Input
+            id="yearFilter"
+            width="150px"
+            showValueHelp="true"
+            valueHelpRequest=".onYearValueHelp"
+            />
+									</fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+						<!-- ==========================
+                             KPI CARDS
+                        =========================== -->
+						<VBox id="_IDGenVBox2" width="100%" class="kpiWrapper">
+							<HBox id="_IDGenHBox1" class="kpiContainer kpiRow">
+								<!-- KPI 1 -->
+								<VBox id="_IDGenVBox3" class="kpiCard">
+									<HBox id="_IDGenHBox2" class="kpiTopRow">
+										<core:Icon id="_IDGenIcon" src="sap-icon://group" class="kpiIcon"/>
+										<Text id="kpiHC" text="{/kpi/headCount}" class="kpiValue"/>
+									</HBox>
+									<Text id="_IDGenText4" text="Head Count" class="kpiTitle"/>
+								</VBox>
+								<!-- KPI 2 -->
+								<VBox id="_IDGenVBox4" class="kpiCard">
+									<HBox id="_IDGenHBox3" class="kpiTopRow">
+										<core:Icon id="_IDGenIcon1" src="sap-icon://wallet" class="kpiIcon"/>
+										<Text id="kpiTHP" text="{/kpi/takeHomePay}" class="kpiValue"/>
+									</HBox>
+									<Text id="_IDGenText5" text="Take Home Pay" class="kpiTitle"/>
+								</VBox>
+								<!-- KPI 3 -->
+								<VBox id="_IDGenVBox5" class="kpiCard">
+									<HBox id="_IDGenHBox4" class="kpiTopRow">
+										<core:Icon id="_IDGenIcon2" src="sap-icon://money-bills" class="kpiIcon"/>
+										<Text id="kpiEmpCost" text="{/kpi/employeeCost}" class="kpiValue"/>
+									</HBox>
+									<Text id="_IDGenText6" text="Employee Cost" class="kpiTitle"/>
+								</VBox>
+								<!-- KPI 4 -->
+								<VBox id="_IDGenVBox6" class="kpiCard">
+									<HBox id="_IDGenHBox5" class="kpiTopRow">
+										<core:Icon id="_IDGenIcon3" src="sap-icon://opportunities" class="kpiIcon"/>
+										<Text id="kpiBIK" text="{/kpi/benefitInKind}" class="kpiValue"/>
+									</HBox>
+									<Text id="_IDGenText7" text="Benefit in Kind" class="kpiTitle"/>
+								</VBox>
+								<!-- KPI 5 -->
+								<VBox id="_IDGenVBox7" class="kpiCard">
+									<HBox id="_IDGenHBox6" class="kpiTopRow">
+										<core:Icon id="_IDGenIcon4" src="sap-icon://lead" class="kpiIcon"/>
+										<Text id="kpiTC" text="{/kpi/totalCost}" class="kpiValue"/>
+									</HBox>
+									<Text id="_IDGenText8" text="Total Cost" class="kpiTitle"/>
+								</VBox>
+							</HBox>
+						</VBox>
+						<!-- ==========================
+                             CHART GRID
+                        =========================== -->
+						<l:Grid id="_IDGenGrid" defaultSpan="L6 M12 S12" hSpacing="1" vSpacing="1">
+							<!-- Chart 1 -->
+							<l:content>
+								<VBox id="_IDGenVBox8" class="vizPanel sapUiRespGridSpanL6 sapUiRespGridSpanM12 sapUiRespGridSpanS12">
+									<!-- <Title id="_IDGenTitle" text="Head Count by Month" level="H4" class="chartTitle"/> -->
+									<viz:VizFrame id="chartActive" vizType="column" class="vizFrameFull" vizProperties="{
+                                        'title': {
+                                            'text': 'Head Count by Month'
+                                        }
+                                    }">
+										<viz:dataset>
+											<vizData:FlattenedDataset id="_IDGenFlattenedDataset" data="{/hc}">
+												<vizData:dimensions>
+													<vizData:DimensionDefinition id="_IDGenDimensionDefinition" name="Month" value="{month}"/>
+												</vizData:dimensions>
+												<vizData:measures>
+													<vizData:MeasureDefinition id="_IDGenMeasureDefinition" name="HC" value="{value}"/>
+												</vizData:measures>
+											</vizData:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<vizFeeds:FeedItem id="_IDGenFeedItem" uid="valueAxis" type="Measure" values="HC"/>
+											<vizFeeds:FeedItem id="_IDGenFeedItem1" uid="categoryAxis" type="Dimension" values="Month"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</VBox>
+							</l:content>
+							<!-- Chart 2 -->
+							<l:content>
+								<VBox id="_IDGenVBox9" class="vizPanel sapUiRespGridSpanL6 sapUiRespGridSpanM12 sapUiRespGridSpanS12">
+									<!-- <Title id="_IDGenTitle1" text="Employee Cost by Month" level="H4" class="chartTitle"/> -->
+									<viz:VizFrame id="chartDept" vizType="bar" class="vizFrameFull" vizProperties="{
+                                        'title': {
+                                            'text': 'Employee Cost by Month'
+                                        }
+                                    }">
+										<viz:dataset>
+											<vizData:FlattenedDataset id="_IDGenFlattenedDataset1" data="{/employeeCost}">
+												<vizData:dimensions>
+													<vizData:DimensionDefinition id="_IDGenDimensionDefinition1" name="Month" value="{month}"/>
+												</vizData:dimensions>
+												<vizData:measures>
+													<vizData:MeasureDefinition id="_IDGenMeasureDefinition1" name="Amount" value="{amount}"/>
+												</vizData:measures>
+											</vizData:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<vizFeeds:FeedItem id="_IDGenFeedItem2" uid="valueAxis" type="Measure" values="Amount"/>
+											<vizFeeds:FeedItem id="_IDGenFeedItem3" uid="categoryAxis" type="Dimension" values="Month"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</VBox>
+							</l:content>
+							<!-- Chart 3 -->
+							<l:content>
+								<VBox id="_IDGenVBox10" class="vizPanel sapUiRespGridSpanL6 sapUiRespGridSpanM12 sapUiRespGridSpanS12">
+									<!-- <Title id="_IDGenTitle2" text="Benefit In Kind by Month" level="H4" class="chartTitle"/> -->
+									<viz:VizFrame id="chartLeave" vizType="column" class="vizFrameFull" vizProperties="{
+                                        'title': {
+                                            'text': 'Benefit In Kind by Month'
+                                        }
+                                    }">
+										<viz:dataset>
+											<vizData:FlattenedDataset id="_IDGenFlattenedDataset2" data="{/benefitKind}">
+												<vizData:dimensions>
+													<vizData:DimensionDefinition id="_IDGenDimensionDefinition2" name="Month" value="{month}"/>
+												</vizData:dimensions>
+												<vizData:measures>
+													<vizData:MeasureDefinition id="_IDGenMeasureDefinition2" name="Amount" value="{amount}"/>
+												</vizData:measures>
+											</vizData:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<vizFeeds:FeedItem id="_IDGenFeedItem4" uid="valueAxis" type="Measure" values="Amount"/>
+											<vizFeeds:FeedItem id="_IDGenFeedItem5" uid="categoryAxis" type="Dimension" values="Month"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</VBox>
+							</l:content>
+							<!-- Chart 4 -->
+							<l:content>
+								<VBox id="_IDGenVBox11" class="vizPanel sapUiRespGridSpanL6 sapUiRespGridSpanM12 sapUiRespGridSpanS12">
+									<!-- <Title id="_IDGenTitle3" text="Total Cost by Month" level="H4" class="chartTitle"/> -->
+									<viz:VizFrame id="chartGender" vizType="column" class="vizFrameFull" vizProperties="{
+                                        'title': {
+                                            'text': 'Total Cost by Month'
+                                        }
+                                    }">
+										<viz:dataset>
+											<vizData:FlattenedDataset id="_IDGenFlattenedDataset3" data="{/totalCost}">
+												<vizData:dimensions>
+													<vizData:DimensionDefinition id="_IDGenDimensionDefinition3" name="Month" value="{month}"/>
+												</vizData:dimensions>
+												<vizData:measures>
+													<vizData:MeasureDefinition id="_IDGenMeasureDefinition3" name="Amount" value="{amount}"/>
+												</vizData:measures>
+											</vizData:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<vizFeeds:FeedItem id="_IDGenFeedItem6" uid="valueAxis" type="Measure" values="Amount"/>
+											<vizFeeds:FeedItem id="_IDGenFeedItem7" uid="categoryAxis" type="Dimension" values="Month"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</VBox>
+							</l:content>
+						</l:Grid>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
