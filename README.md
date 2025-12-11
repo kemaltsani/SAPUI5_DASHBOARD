@@ -33,4 +33,6 @@ An SAP Fiori application.
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
 
+Preview Application:
+<img width="1819" height="912" alt="image" src="https://github.com/user-attachments/assets/4b99ec1e-8a27-4e8a-88d1-ea281126ec32" />
 
